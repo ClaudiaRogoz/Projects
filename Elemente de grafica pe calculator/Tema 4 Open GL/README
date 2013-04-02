@@ -1,0 +1,11 @@
+Merca Ionel 331 CB
+
+Labirintul este citit din fisier si este desenat in clasa Labirint identificand daca la un moment dat trebuie desenat un cub sau lasat un spatiu liber. 
+Am implementat 3 tipuri de camere care poti sa fi schimbate cu 1 - camera top, 2 - camera first person , 3 camera third person. Erou se misca inainte inapoi cu tastele w si s si se roteste cu tastele a d, pentru camera third person camera se roteste pe numpad 4 si 6. Am folosit 2 camere, primul tip de camera pentru first person primeste pozitia bilei iar miscari sunt implementate folosind functiile facute la laborator forward, rotate_OY, pentru camera third person am folosit o alta camera care este centrata pe obiect si cu vectorul pozitie mai sus decat obiectul si putin mai in spate. 
+Am implementat coliziunile cu zidurile folosind o functie de detectare a coliziunii dintre un cub si o sfera folosind 2 varfuri ale cubului si coordonatele sferei. Pentru erou care este format din con si sfera am considerat ca este o sfera cu raza egala cu raza sferei + inaltimea conului. 
+Coliziunea dintre tor si erou este facuta cu coliziuni sfera sfera folosind distanta dintre centrele sferelor si suma razelor sferelor. La final eroul intrand in sfera duce la disparitia eroului. 
+Bonusuri: 
+-Incarcare texturilor pentru pereti, am urmat un tutorial pentru incarcarea texturilor.
+-iluminare pentru toata scena.
+-eroul principal poate sa ia anumite bonusuri care dureaza o perioada de timp 1200 de frameuri, de ex daca colizioneaza cu o bila de culoare neagra atunci eroul poate sa treaca prin pereti,sau daca colizioneaza cu o bila de culoare galbena poate sa traga in pereti spargand pereti.
+

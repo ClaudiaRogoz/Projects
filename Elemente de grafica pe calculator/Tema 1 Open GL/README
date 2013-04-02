@@ -1,0 +1,7 @@
+Merca Ionel 331 CB 
+Tema 1 EGC
+
+Controls:
+Pentru prima echipa, echipa galben pentru rotire se folosesc tastele 'w' si 'r' si pentru sut/pase se foloseste tasta 'e' pentru miscarea portarului stanga-drepta la orice moment de timp se folosesc tastele 'a' 'd'.Asemanator pentru echipa rosu, rotire '7' '9' sut '8', miscare portar '4' '6'. 
+Am implementat toate cerintele obligatorii ale temei si in plus am adaugat tribune care atunci cand se da gol se schimba culoarea tribunelor si mingea este data aleator unui jucator din echipa care a luat gol. La sfarsit cand una din echipe inscrie 3 goluri ecranul ingheata si mingea este data aleator uneia din echipe. 
+Am implementat coliziuni dintre perete si minge calculand distanta dintre un punct si o dreapta cu ecuatia dreptei, iar coliziunile dintre jucator si minge am testat ca suma patratelor diferentelor coordonatelor centrelor cercurilor sa fie mai mica decat patratul sumei razelor. 
