@@ -1,0 +1,5 @@
+Merca Ionel 321 CB
+
+Am folosit visitor pattern pentru a implementa un compilator. Pe arborele de parsare facut in clasa node (makeTree) am implementat 2 visitori SemanticVisitor si ResultVisitor care sunt asemanatoare,una parcurge arborele si ii verifica greselile gramaticale si celalalt calculeaza rezultatele pentru fisierele corecte.
+	In clasa main am apelat pentru fiecare copil al radacinii generice ( pentru ca nu am implementat visit pentru clasa node) functia accept si prin intermediul visitorului semantic parcurgea tot acel subarbore. Verificand tipul si daca existau greseli, la fel si pentru result visitor doar ca acesta calcula rezultate auxiliare bazate pe tipul operatorilor.
+Mai multe detalii in comentarii si in java doc!

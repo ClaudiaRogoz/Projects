@@ -1,0 +1,5 @@
+Merca Ionel 
+321 CB
+
+Concluzie analiza : 
+	Pentru Lazy student timpul este mai mare pentru ca de fiecare data se insereaza/scoate din acelasi bucket pentru ca functia hash code este o constanta, in timp ce pentru Student se insereaza/scoate din bucket uri diferite depinzand de cheie pentru ca se calculeaza alt hasCode.

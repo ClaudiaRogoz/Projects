@@ -1,0 +1,7 @@
+Merca Ionel 321 CB
+Am facut un arbore care sa simuleze un sistem de gestionare de fisiere. clasa arboreSGF contine un ArrayList de arboreSGF adica copii Arborelui care sunt tot arbori , si un Orice care semnifica un fisier sau un director. 
+Clasa orice contine nume , user_owner, user_group, tip,content,rights, clasele Folder si File extind Orice si adauga functii caracteristice pentru fiecare fisier / folder.
+Pentru protectie am facut clasa User care contine numele userului, grupul default , o lista cu grupurile lui si clasa Group care contine numele grupului userul owner si un arraylist cu toti userii grupului.
+Clasa Main contine functia main in care se preia si se prelucreaza commanda intr-un for infinit care se opreste cand se primeste comanda quit. Pentru fiecare task primit apelez o functie anume sau prelucrez arborele intr-un anumit fel. 
+Pentru a memora grupurile si userii am folosit doua colectii de tip map, in prima <String,ArayList<Group>> retin userul care este cheia si un arraylist cu grupurile la care userul este owner, in cea dea doua <String,Group> retin numele grupului cheia si grupul propriu zis. 
+Alte detalii de implementare sunt specificate in comentarii:D
