@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/viewlink"
+          android:icon="@drawable/ic_launcher"
+          android:title="View Link"
+          />
+    <item android:id="@+id/viewMap"
+          android:icon="@drawable/ic_launcher"
+          android:title="View Map" />
+</menu>
