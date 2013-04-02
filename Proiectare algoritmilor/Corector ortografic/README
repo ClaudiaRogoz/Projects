@@ -1,0 +1,12 @@
+Merca Ionel 
+321CB
+
+Tema 1 PA
+
+Dictionarul l-am format intr-un treemap care contine ca cheie lungimea sirului respectiv si valoarea alt treemap care contine ca cheie Stringul si ca valoare frecventa. 
+Pentru aflarea distantei dintre 2 cuvinte am folosit algoritmul Levenshtein folosind ca sursa http://en.wikipedia.org/wiki/Levenshtein_distance. Acest algoritm are complexitate polinomiala n*m pentru n,m lungimea celor 2 siruri. 
+Functie corect word corecteaza un singur string, adica returneaza cel mai bun candidat in functie de distanta. Aceasta functie are complexitate constanta, verificand pana la lungimea sirului +,- 2 din motive de timp.
+functia corectAnything foloseste un algoritm de programare dinamica cu complexitatea de n(n-1)/2 (pentru ca parcurge decat o matrice deasupra diagonalei) * complexitatea Corect word (care este o constanta * complexitatea algoritmul de calcul al distantei levensthein). Algoritmul de obtinere a solutiilor este astfel: pe prima linie a unei matrici de Sentence se pun substringurile de la 1 la lungimea sirului, impreuna cu frecventele, numarul de cuvinte incepand de la linia 1 pozitia[1][1] se calculeaza in functie de cea mai buna alegere la pasul precedent adica cea mai buna alegere care sa completeze acel string adica unul din Sentence-urile de pe coloana 0, la fel pentru liniile j se ia cea mai buna varianta de pe coloana j-1 comparand toate rezultatele precedente, deci stringul de va concatena cu cel mai bun de pe coloana j-1. Pentru a afla cea mai buna varianta globala trebuie sa cautam in toate cele de pe ultima coloana comparandu-le dupa distanta totala,numarul de cuvinte, frecventa totala sau in ordine lexicografica. 
+
+
+

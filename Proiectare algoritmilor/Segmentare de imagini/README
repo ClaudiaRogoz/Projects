@@ -1,0 +1,10 @@
+Merca Ionel 
+321 CB 
+
+Tema 3 PA 
+
+Segmentarea imaginilor
+
+Graful l-am implementat folosind liste de vecini pentru asta am folosit un HashMap care are ca key nodul pentru care este lista de vecini si ca valoare o lista de Muchii. Am adaugat in graf pe langa nodurile normale,adica pixel si cei patru vecini posibili, 2 noduri sursa si drena care sunt legate cu orice nod iar pentru sursa capacitatea muchiei este egala cu valoare returnata de functia fu(1) si pentru drena fu(0). Apoi dupa ce am format graful am  dorit implementarea unui pentru gasirea taieturii minime pentru a impartii imaginea in 2 segmente foreground si background. Pentru aceasta am facut un bfs care imi returneaza un drum minim de la sursa la drena adica primul drum nesaturat din graf. Apoi am dorit saturarea unui drum in graf pentru aceasta am facut functia saturate path care satureaza drumul primit ca parametru adica calculeaza capacitatea minima si apoi satureaz in graf atat in vecinii lui u cat si in vecinii lui v pentru muchia u-v acel drum. Algoritmul care calculeaza max_flow si in acelasi timp satureaza si toate drumurile in graf ia fiecare drum de la sursa la drena il satureaza si adauga la maxflow capacitatea minima pentru acel drum. Apoi pentru gasirea pixelilor din foreground si background am facut inca un bfs de la sursa la drena si am marcat toate nodurile la care se poate ajunge din sursa acele noduri fiind in foreground.
+Complexitatea este pentru bfs O(|V|+ |E|) numarul de muchii + numarul de edges dar algoritmul pentru gasirea drumului minim de la sursa la drena se executa in timp constant pentru ca aproape mereu drumul va fi sursa nod drena. Saturate path are complexitate  O(nr de vecini * nr de noduri din path).]
+Maxflow are complexitate O(nr de drumuri *( complexitate bfs path + complexitate saturate path)) Complexitatea pentru min_cut este cea a bfs-ului + complexitatea de scriere adica n*m.  Se mai adauga la complexitate si complexitatea de formare a grafului adica O(4*n*m) worst case.
