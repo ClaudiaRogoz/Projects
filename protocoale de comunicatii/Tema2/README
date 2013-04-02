@@ -1,0 +1,15 @@
+Merca Ionel 
+321CB 
+
+Tema 2 PC
+
+	Pentru tratarea evenimentelor am parsat payload ul primit ca mesaj de tip 7 iar in functie de prima valoare am efectuat un anumit tip de eveniment in continuare parsarea fiind specifica fiecarui eveniment in parte. 
+	Pentru evenimente de tip 1, am folosit o matrice topologie[KIDS][KIDS] care contine costul intre 2 noduri i,j sau -1 daca nu exista muchie intre i,j, amm folosit msg LSADatabase[KIDS] ce reprezinta baza de date cu mesajele cele mai noi. pentru aflarea vecinilor unui nod am facut o functie care returneaza un vector de int-uri de fapt coloana nod din topologie. Pentru ca simulatorul sa poate procesa toate mesajele am retinut toate mesajele primite la un pas de timp intr-o coada pe care o prelucrez atunci cand primesc mesaj de tip 6 si se mareste timpul, copiez elementele din coada de la t-1 in o coada veche pentru a putea adauga in coada noua mesaje de la pasul q. In functie de tipul mesajului actiunile vor fi diferite pentru mesaje de tip1 si 3 care trebuiesc retinute in LSADatabase am facut functia newmsg care verifica daca un mesaj este nou si daca poate fi adaugat in db intorcand si pozitia pe care sa se insereze in database daca exista deja acel creator. Pentru trimiterea vecinilor am folosit sprintf si memcpy pentru retinerea lor in payload, pentru mesaje de tip 2 am trimis costul dintre sender si next_hop in len. 
+	Pentru evenimente de tip 2 am lucrat pe scheletul de la tip 1 modificand doar trimiterea de mesaje din case 7, la fel pentru evenimente 2 si 4 am respectat indicatiile din enunt trimitand mesaje corespunzatoare. 
+	Pentru calcularea tabelei de rutare am folosit algoritmul lui Dijkstra de drum de cost minim dintre 2 noduri dupa modelul algoritmului din cursul de PC. Am updatat tabela de rutare la sfarsitul prelucrarilor elementelor din coada la momentul t si dupa stergerea unui link .
+	Pentru structurile de coada am folosit <queue> schimband corespunzator extensia si Makefile. 
+	Pentru corectat este folositor fisierul log creat la rulare care contine tabela de rutare si topologia pentru fiecare nod la timpul t.
+	Tema functionezea pe exemple pe care le-am ales eu, doar ca pentru anumite exemple cred eu alese prost structurile de date se updatau mai tarziu decat trebuia.
+	
+	
+	99163a0d67bc46fcc8adfafaec4be70c  Merca_Ionel_321CB.zip

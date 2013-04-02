@@ -1,0 +1,98 @@
+Tema 4 - Aplicaþie client pentru interogãri DNS
+
+Data publicãrii: 30.04.2012
+Data ultimei modificãri a enunþului: 30.04.2012
+Termenul de predare: 16.05.2012, ora 23:55
+
+Responsabil: Elena Apostol (elena.apostol@cs.pub.ro)
+
+Obiective
+Tema are ca obiectiv familiarizarea cu sistemul numelor de domenii in Internet (DNS) si cu modul in care functioneaza protocolul corespunzator.
+
+Descrierea temei
+Se cere scrierea unui program C/C++ care sa functioneze ca un Resolver DNS, adica un program care foloseste cereri DNS pentru interogarea unor servere DNS. Aplicatia trebuie sa permita interogarea unui server de DNS folosind specificatiile protocolului (RFC1035 si RFC1034).
+
+Programul va primi ca argument din linia de comanda un nume de domeniu sau o adresa IP si va afisa o serie de informatii despre acesta/aceasta.
+
+Pentru a obtine informatiile dorite, aplicatia se va conecta la un server de DNS (pe portul 53) folosind ca protocol de transport UDP si, folosind mesaje formate dupa specificatiile protocolului, va solicita inregistrari de resurse asociate acelei statii.
+
+Se cere ca programul vostru sa realizeze urmatoarele tipuri de interogari: A (Host Address), MX (Mail Exchange), NS (Authoritative Name Server), CNAME (the canonical name for an alias)- daca in linia de comanda s-a dat un nume de domeniu si PTR (domain name pointer) - pentru realizarea de interogari inverse (reverse lookup), in cazul in care in linia de comanda s-a dat o adresa IP.
+
+Formatul mesajelor
+
+Formatele mesajelor de interogare si raspuns sunt prezentate in sectiunea 4.1 din RFC 1035.
+
+    +---------------------+
+    |        Header       |
+    +---------------------+
+    |       Question      | the question for the name server
+    +---------------------+
+    |        Answer       | RRs answering the question
+    +---------------------+
+    |      Authority      | RRs pointing toward an authority
+    +---------------------+
+    |      Additional     | RRs holding additional information
+    +---------------------+
+
+Atentie!! Ordinea in care trebuie trimisi octetii intr-o variabila numerica este Big Endian, adica Network Byte Order. Asa ca la valorile numerice trebuie fie sa faceti hton, fie sa puneti octetii "de mana" in ordinea care trebuie.
+
+Cererea catre server va trebui sa contina sectiunile "Header" si "Question". 
+
+Raspunsul de la server va contine atat sectiunile "Header" si "Question", si un numar de sectiuni de tipul inregistrare ("Resource Record").
+
+Se recomanda definirea de structuri pentru fiecare dintre aceste sectiuni. Un model de reprezentarea a acestor structuri este descris in  fisier header.
+
+
+Formatul date iesire prelucrate :
+
+Trebuie sa afisati inregistrarile (Resource Record) din sectiunea "Answer", dar si pe cele din "Authority" si "Additional".
+
+Formatul de afisare cerut este asemanator cu cel intors de comanda: host -v -t type name. In functie de tipul inregistrarii aveti urmatorul format: format-inregistrari
+
+Raspunsul primit va fi adaugat la fisierul "logfile". Un exemplu de "logfile" gasiti aici (este obtinut in urma rularii programului de 2 ori: google.com NS ºi 209.92.24.80 PTR)
+
+Rulare aplicatie:
+
+Programul (my_dns_client) va primi doua argumente din linia de comanda: numele de domeniu / adresa IP, si un parametru care sa specifice ce tip de inregistrare ne intereseaza.
+
+De exemplu:
+
+./my_dns_client google.com A
+
+./my_dns_client cs.pub.ro MX
+
+./my_dns_client 141.85.227.5 PTR
+
+Adresa IP a serverului de DNS la care se conecteaza programul va fi data intr-un fisier de configurare numit dns_servers.conf, aflat in acelasi director cu programul.
+
+Fisierul dns_servers.conf va contine mai multe adrese de servere, cate una pe fiecare linie si posibile comentarii, pe o singura linie care incepe cu caracterul special '#'.
+
+Exemplu de fisier dns_servers.conf.
+
+Daca nu se pot obtine informatii de la primul server din fisier (adresa e incorecta, raspunsul nu ajunge in timp util etc.), se trece la serverul urmator etc.
+
+Aratati in Readme care au fost cazurile de eroare pe care le-ati considerat.
+
+Puteti folosi adresa oricarui server de DNS doriti; pentru a afla adrese valide de servere DNS sunt mai multe posibilitati:
+
+    cateva servere recomandate de noi: google-public-dns-a.google.com (8.8.8.8), ns.rnc.ro (192.162.16.21), ns-a.rnc.ro (192.162.16.31)
+    o lista mai mare cu servere DNS din Romania: http://www.tackesoft.ro/domenii/index.php/ns
+    serverul/serverele de DNS pe care le utilizeaza calculatorul vostru de acasa, care pot fi gasite in fisierul /etc/resolv.con
+
+Specificatii suplimentare:
+
+    Nu aveti voie sa apelati functiile gethostbyname() si gethstbyaddr()
+
+    Nu este necesara tratarea cazului cand serverul nu poate realiza interogari recursive. Tratati doar cazul cand serverul "stie" sa faca astfel de interogari, ceea ce este valabil pentru marea majoritate a serverelor actuale. Astfel, in header-ul cererii veti seta bitul RD=1 si puteti presupune ca veti primi un raspuns corect de la server
+
+    Pentru realizarea temei trebuie sa cititi cel putin urmatoarele sectiuni din RFC 1035: 3.2 - 3.5, 4.1, 4.2
+
+    Trebuie tratata comprimarea mesajelor (vezi Sectiunea 4.1.4 din RFC 1035); doar domeniile se comprima - dupa cum scrie in RFC in sectiunea respectiva
+
+    Pentru reverse lookup: va trebui sa faceti un query de tip PTR, iar numele de domeniu din query va fi adresa IP "inversata" la care se adauga sirul ".in-addr.arpa"; de exemplu, daca vrem sa aflam numele de domeniu pentru IP-ul 1.2.3.4, vom face un query de tip PTR pentru "4.3.2.1.in-addr.arpa" (vezi Sectiunea 3.5 din RFC 1035)
+
+     Pentru testare/verificare va recomand folosirea utilitarelor host si Wireshark (folositi filtru: port 53). Aveti aici un exemplu de afisare a unei interogari DNS in Wireshark.
+
+Resurse:
+
+    O alta pagina utila ce descrie formatul mesajelor DNS: http://www.networksorcery.com/enp/protocol/dns.htm#Authority%20RR
