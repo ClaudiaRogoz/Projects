@@ -1,0 +1,13 @@
+Merca
+Ionel
+311CB
+function pr=Iterative(file_in,d,eps)
+In aceasta functie citim din fisierul file_in numarul de noduri si formam o matrice de adiacenta. care contine 1 pe linia si coloana unde exista legatura intre nodul j si k adica daca pagina k contine link spre pagina j. Vectorul PR va contine probabilitatea ca un utilizator sa acceseze pagina i. Vectorul l contine nr de noduri adiacente nodului i. 
+ calculam matricea inv(K) care  are pe diag principala 1/ nr de noduri adiacente pentru nodul i.
+Calculam matricea M=(K*A)' pt aplicarea formulei d*M*PR1+(1-d)/nrn*u,pana cand diferenta dintre PR la pasul t si cel la pasul t-1 este mai mic decat eps. cat timp abs(PR1-PR)<=eps returneaza un vector cu 1 unde se respecta conditia si cu 0 unde nu se respecta suma tuturor elementelor trebuie sa fie egal cu nr de noduri adica 1.
+function pr=Algebraic( file_in,d )
+citesc din fisier n
+calculam matricea inv(K) care  are pe diag principala 1/ nr de noduri adiacente pentru nodul i.Pt aflare lui R dupa formula R=inv((I-d*M))(1-d)/nrn*u notam B=I-d*M; si calculam inv(b) cu algoritmul Gram-Schmidt prin rezolvarea a n sisteme de ecuatii cu n necunoscute. Algorimul gram schmidt: vom obtine 2 matrici Q si R care inmultite dau B=I-d*M si vom afla inversa matricii B. B*inv(B)=I B=Q*R => Q*R*inv(B)=I si R*inv(B)=Q' pentru ca Q este o matrice ortogonala. si rezolvam sistemul de n ecuatii unde coloana necunoscutelor va fi fiecare coloana a inversei si coloana termenilor liberi va fi coloana corespunzatoare din Q'. Obtinem inversa si aplicam formula PR=Bm*(((1-d)/nrn)*u); pentru aflarea page rank ului.
+function    tema2( file_in,d,eps )
+citim din fisier val1 val2 si punem conditia ca functia F sa fie continua si calculam valoarea lui a si b pt cand functia este a*x=b; apelam cele 2 functii algebraic si iterative si scriem in fisier rezultatele fiecareia sortam descrescator vectorul obtinut din apelarea functiei algebraic, prin metoda interschimbarii si interschimbam in acelasi timp cu elementul si indicele sau memorat intr-un vector initializat cu valori de la 1 la numarul de noduri. Aplicam functia F fiecarui element din PR si scriem corespunzator in fisierul de iesire. 
+
