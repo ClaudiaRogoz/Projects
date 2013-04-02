@@ -1,0 +1,13 @@
+MERCA IONEL 331 CB
+
+
+Am facut in C++ deci ar trebui sa folositi MAKEFILE -ul pe care l-am pus in arhiva.
+
+Am parsat folosind flex masinile turing, retinandu-le sub forma unui arbore intr-o structura de genul : Nod { actiune, vecini<nod*>}. De ex cand am intalnit masini elementare am adaugat in arbore un nou nod care are ca actiune masina aceea elementara, cand am intalnit o ( care reprezenta o tranzitie am adaugat un nod tranz care va avea ca vecini (am folosit map cheia pentru ce era tranzitia iar valoarea lantul pentru tranzitia aceea / next node) fiecare tranzitie adica pentru n tranzitii n vecini, pentru doar am adaugat nod nou cu actiunea loop@/&loop.
+
+Executarea masinilor am facut-o recursiv parcurgand arborele de parsare. Am implementat masinile elementare in aceea functie iar daca actiunea dadea match pentru o masina elementara modificam sirul de intrare in acel mod. 
+Pentru loop am facut in modul urmator, daca nodul curent avea actiunea &loop adaugam intr-o stiva loop@ cautand varful stivei intorcandu-ma din recursivitate, adica dau return daca am ceva in stiva pana cand gasesc loop@, in momentul in care gasesc loop@ sterg varful stivei si continui recursiv. 
+Daca actiunea era de tranzitie, atunci caut in map-ul de vecini a nodului tranzitia care imi convine apeland functia recursiv de acel nod urmator.
+Masinile elementare sunt executate tot recursiv cautand in vectorul de masini,care contine toate masinile definite in fisierul de intrare, numele masinii intrand in recursivitate cu primul nod din aceea masina. 
+Pentru a rezolva problema tranzitiilor in tranzitii am folosit o stiva care are in varf tranzitia curenta, eu parsand textul in modul tranz pana cand stiva se goleste. 
+Din pacate, nu stiu de ce, dureaza mai mult testarea... sper sa ai rabdare... Multumesc
