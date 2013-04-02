@@ -1,0 +1,9 @@
+Merca Ionel 331 CB 
+
+Am afisat tabela de rutare astfel : tabela de rutare pentru x 1 => next_hop to 1 etc.
+Am afisat mesajele pentru fiecare nod care primeste ceva afiseaza ce a primit si de la ce nod, iar daca a ajuns la destinatie afisez ca a ajuns la destinatie.
+
+Faza 1 
+Daca am rank 0 adica sunt nod initiator trimit mesaje de sondaj catre toti vecinii mei, tabela de rutare initiala pentru fiecare nod indica sa trimita totul spre parinte, apoi daca primim ecou de la copii cu tabela lor de rutare atunci ne updatam si noi tabela de rutare in functie de tabela lor adica daca pe o pozitie in tabela de rutare a copiilor este diferite de rank ul meu atunci updatez tabela cu rankul copilului de la care am primit.Daca sunt nod neinitator atunci trimit sondajul mai departe si astept la fel mesaje de ecou, doar daca sunt frunza adica nu am cui sa ii trimit sondaj trimit parintelui tabela de rutare, el updatandu-si tabela corespunzator.Pentru eliminarea ciclurilor daca primim un mesaj de sondaj de la un alt vecin dupa ce am primit de la parinte, il omitem si ii trimitem un mesaj null, adica in cazul meu o tabela de rutare nefolositoare. Dupa aceasta faza stergem nodurile care trebuiesc omise din listele de vecini si incepem faza 2 
+Fiecare nod trimite mesajele pe care le are de trimis si daca trimite respectivele mesaje trimite un mesaj de broadcast pentru a anunta faptul ca a terminat de trimis.Si asteptam sa primim mesaje de terminare de la toate nodurile adica mesaje de broadcast de terminare, daca sunt frunza si am primit suficiente mesaje de terminare adica n-1 atunci imi anunt parintele ca am terminat de rutat si de trimis mesaje, apoi parintele trebuie sa astepte sa termine toti copii lui si apoi ii trimite si el parintelui in cele din urma nodul 0 care nu are parinte primeste mesaj de terminare final de la toti vecinii deci s-a terminat rutarea pachetelor.
+

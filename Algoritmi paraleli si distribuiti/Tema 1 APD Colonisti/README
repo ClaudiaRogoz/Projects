@@ -1,0 +1,153 @@
+Merca Ionel 331 CB
+
+
+
+Pentru variata seriala : 
+Am facut o functie readfromfile care imi citeste din fisier si o functie care imi calculeaza activitatile care se fac intr-un an iar la sfarsitul fiecarui an copiez datele din matricile pentru anul viitor in anul prezent adica de ex din tinutanv in tinut.
+In functia de calculare a activitatilor anuale am facut 4 for uri care parcurg matricea iar pentru fiecare element al matricei calculam costul cel mai mic adica cu pret + dist(reg1,reg2). Apoi dupa pretului minim pentru fiecare regiune ( pretul minim pt resursa proprie si resursa complemetara) am verificat toate activitatile care au fost specificate in tema, calculand in acelasi timp si numarul de elemente cu o anumita resursa si pretul maxim pentru fiecare resursa.
+
+
+Pentru varianta paralela:
+
+am adaugat la variata seriala un #pragma omp parallel for private(i,j,k,l) reduction(+:nrA,nrB). am facut private i,j,k,l sunt proprii fiecarui thread, 
+reduction am folosit pentru calcularea nr de colonisti care cultiva resursa X pentru ca se facea o suma, iar la sfarsit trebuie sa se faca suma de pe toate threadurile 
+am mai adaugat la calcularea pretului maxim un #pragma omp critical pentru ca acea portiune de cod sa fie executata neaparat si sa se termine in acel moment,pentru ca altfel s-ar putea ca maximul sa se schimbe in mod eronat.
+
+Pentru varianta optimizata:
+
+Am facut pentru calculul pretului minim 4 matrici si am pornit din fiecare colt al matricii de ex din coltul din stanga sus am comparat elementul i,j cu cel din stanga si de deasupra lui, pt coltul din dreapta jos am comparat elementul n-i-1,n-j-1 cu cel din dreapta lui si cu cel de sub el propagand minimul. Dupa ce am parcurs in mod diferit aceste 4 matrici pornind din fiecare colt diferit am facut minimul pt elementul de pe poz i,j ca fiind minimul dintre cele 4 valori din cele 4 matrici de pe aceeasi pozitie.
+
+timp pt 1000 iteratii n=50   real	0m0.798s
+timp pt 1000iteratii n= 1000 real	0m3.308s
+
+Complexitatea algorimului serial este O(n^4 * nrani) pentru ca parcurgem matricea de 2 ori pentru fiecare an in parte.
+
+Complexitatea algoritmului paralel este complexitatea algoritmului serial / N adica O(n^4*nrani / N ) unde N este numarul de threaduri.
+
+Ex de rulare pentru script: 
+./script Nrani fisintrare fisiesireserial fisiesireparalel schedule[,chunk] nrthreads 
+
+Speed up l-am calculat pentru fiecare sectiune de thread ca fiind timp(serial)/timp(paralelminim pt nr resp de threaduri)
+
+
+Serial N=50 500iter  : 0m53.585s
+
+Paralel N=50 500iter thread = 1 scheduling dynamic chunk 1 
+0m57.401s
+
+Paralel N=50 500iter thread = 1 scheduling dynamic chunk 10
+0m57.387s
+
+Paralel N=50 500iter thread = 1 scheduling static chunk 10
+0m57.401s
+
+Paralel N=50 500iter thread = 1 scheduling guided chunk 10
+0m57.398s
+
+Speedup = 0.93337
+
+
+Paralel N=50 500iter thread = 2 scheduling dynamic chunk 1 
+0m30.139s
+
+Paralel N=50 500iter thread = 2 scheduling dynamic chunk 10
+0m30.130s
+
+Paralel N=50 500iter thread = 2 scheduling static chunk 1
+0m30.150s
+
+Paralel N=50 500iter thread = 2 scheduling static chunk 10
+0m30.118s
+
+Paralel N=50 500iter thread = 2 scheduling guided chunk 1
+0m30.145s
+Paralel N=50 500iter thread = 2 scheduling guided chunk 10
+0m30.162s
+
+Speedup = 1.7791
+
+
+Paralel N=50 500iter thread = 4 scheduling dynamic chunk 1 
+0m15.480s
+
+Paralel N=50 500iter thread = 4 scheduling dynamic chunk 10
+0m15.484s
+
+
+Paralel N=50 500iter thread = 4 scheduling static chunk 10
+0m15.474s
+
+Paralel N=50 500iter thread = 4 scheduling guided chunk 1
+0m15.483s
+
+Speedup = 3.4629
+
+Paralel N=50 500iter thread = 8 scheduling dynamic chunk 1 
+0m8.659s
+
+Paralel N=50 500iter thread = 8 scheduling dynamic chunk 10 
+0m8.714s
+
+Paralel N=50 500iter thread = 8 scheduling static chunk 1
+0m8.718s
+
+Paralel N=50 500iter thread = 8 scheduling static chunk 10
+0m8.711s
+
+Paralel N=50 500iter thread = 8 scheduling guided chunk 1
+0m8.723s
+
+Speedup = 6.1514
+
+Serial N=100 50iter 1m13.226s
+
+Paralel N=100 50iter thread = 1 scheduling dynamic chunk 1 
+1m18.924s
+
+Paralel N=100 50iter thread = 1 scheduling static chunk 1
+1m19.247s
+
+Paralel N=100 50iter thread = 1 scheduling guided chunk 10
+1m18.927s
+
+Speedup = 0.927
+
+Paralel N=100 50iter thread = 2 scheduling dynamic chunk 1 
+0m40.058s
+
+Paralel N=100 50iter thread = 2 scheduling static chunk 1
+0m40.048s
+
+Paralel N=100 50iter thread = 2 scheduling static chunk 10
+0m40.052s
+
+Paralel N=100 50iter thread = 2 scheduling guided chunk 10
+0m40.041s
+
+Speedup = 1.82877
+
+Paralel N=100 50iter thread = 4 scheduling dynamic chunk 1 
+0m21.188s
+
+Paralel N=100 50iter thread = 4 scheduling static chunk 10
+0m20.172s
+
+Paralel N=100 50iter thread = 4 scheduling guided chunk 10
+0m20.299s
+
+Speedup = 3.6300
+
+Paralel N=100 50iter thread = 8 scheduling dynamic chunk 1 
+0m10.554s
+
+Paralel N=100 50iter thread = 8 scheduling static chunk 1
+0m10.538s
+
+Paralel N=100 50iter thread = 8 scheduling static chunk 10
+0m10.703s
+
+Paralel N=100 50iter thread = 8 scheduling guided chunk 10
+0m10.550s
+
+Speedup = 6.9487
+

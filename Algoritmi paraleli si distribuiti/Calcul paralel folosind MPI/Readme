@@ -1,0 +1,23 @@
+Merca Ionel 331 CB
+
+Am implementat algoritmii in doua functii diferite Julia si Mandelbrot, pe care le apelez in fiecare proces. Am decis sa fac impartirea astfel, in functie de inaltimea imaginii height si numarul de procese, procesul cu rank ul k va prelucra al k set de linii de lungime height/nrproc. Fiecare proces isi calculeaza partea pe care o are de prelucrat, adica y -ul de inceput y =ymin +  rank * (height/nrproc)*resolution; la sfarsit primesc in procesul master toti vectorii rezultati pe parcurs pe care ii adaug pe pozitia corespunzatoare din matricea finala.
+
+Pentru julia1.in: 
+	1 proces real	0m0.135s
+	8 procese real	0m1.112s
+
+
+Pentru julia6.in:
+	1 proces real	0m1.287s
+	8 procese real	0m1.429s
+	
+Pentru mandelbrot1.in:
+	1 proces real	0m15.947s
+	8 procese real	0m10.382s
+
+Pentru mandelbrot3.in:
+	1 proces real	0m3.943s
+	8 procese real	0m1.875s
+
+
+Putem sa observam o imbunatatire importanta a timpului in cazul spatiilor mai mari adica pentru imagini rezultate de o dimensiune mai mare, dar diferenta nu este la fel de mare pentru imagini care au MAX_STEPS mare.
