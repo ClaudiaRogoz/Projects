@@ -1,0 +1,4 @@
+Merca Ionel 321CB
+Am implementat detectarea recursivitatii prin parsare apelurilor functiei si daca de ex nu exista nici un apel al functiei nu era recursiva daca erau 2 apeluri in aceeasi lista era tree recursive etc.
+Pentru partea a 2 a pe care din pacate nu am finalizat o am reusit sa fac doar functii ajutatoare pana cand am decis sa abandonez imi merge si abstraction pe cateva cazuri particulare si variable pentru aproape 
+toate cazurile dar nu am mai avut timp sa le integrez in corpul functiei. 

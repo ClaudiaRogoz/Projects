@@ -1,0 +1,7 @@
+Merca Ionel 321 CB
+
+Tema 3 CLIPS
+
+Pentru rezolvarea problemei orarului am folosit urmat pasii din enunt si am creat un orar cu mai multe campuri pe care l-am alterat cu niste mutatii, mutatiile au constat in aplicarea mai multor reguli o singura data adica de ex daca gaseam match pentru 2 sali in acelasi timp am alterat aleator unul din itemuri cu un interval aleator care sa convina, la fel am facut si pentru suprapuneri pe ore pentru profesori si pentru doleantele profesorilor. Apoi dupa ce am aplicat mutatiile am calculat functia de fitness care verifica aceleasi conditii ca pentru mutatii iar daca se verifica una din conditii negative marim functia de fitness o functie de fitness cu un scor mai mic este mai buna. Pentru parcurgerea tuturor mutatiilor am folosit module, pentru fiecare mutatie un modul iar apoi cand am facut iteratiile am adaugat in stiva focus fiecare mutatie. Daca scorul pentru orarul vechi adica cel nealterat si cel nou alterat de mutatii este mai mare atunci pastram orarul nou si in inlocuim pe cel vechi. La final afisez in fisier ultimul orar vechi adica cel cu scorul fitness cel mai mic dupa acel numar de iteratii.
+
+
